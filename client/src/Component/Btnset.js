@@ -6,10 +6,10 @@ export default function Btnset(props){
     //スレの　目録を　分けて　見せる。
     const [currentSet, setCurrnet] = useState(0);
     const {postsCount, setPage} = props;
-    const maxPage = Math.floor( postsCount / 10);
+    const maxPage = Math.ceil( postsCount / 10);
     const maxSet = Math.floor( maxPage / 10);
     const btnArr = document.getElementsByClassName("btn");
-
+    
     useEffect(() => {
         for(let i = 0; i < 10; i++){
             btnArr[i].addEventListener("click", (e) => {

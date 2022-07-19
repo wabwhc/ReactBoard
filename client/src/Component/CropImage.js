@@ -31,11 +31,10 @@ export default function CropImage(props){
         img.src = imgSrc;
 
         const ratio = img.width / image.current.width;
-        console.log(ratio);
+
         canvas.current.width = crop.width * ratio;
         canvas.current.height = crop.width * ratio;
-
-        console.log(canvas.current.width)
+        
         ctx.drawImage(
             img,
             crop.x * ratio,
@@ -69,13 +68,14 @@ export default function CropImage(props){
             }
         )
     }
+
     return(
-        <div className="CropImage absolute">
+        <div className="CropImage absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             {
                 imgSrc &&
                 <>
-                    <ReactCrop style={{"width" : "200px"}} onComplete={onCropComplete} circularCrop={true} crop={crop} aspect={1} onChange={(crop) => setCrop(crop)}>
-                        <img style={{"width" : "200px"}} ref={image} src={imgSrc} alt="CropImg" />
+                    <ReactCrop style={{"width" : "300px"}} onComplete={onCropComplete} circularCrop={true} crop={crop} aspect={1} onChange={(crop) => setCrop(crop)}>
+                        <img style={{"width" : "300px"}} ref={image} src={imgSrc} alt="CropImg" />
                     </ReactCrop>
                     <div>
                         <button onClick={cancel}>취소</button>

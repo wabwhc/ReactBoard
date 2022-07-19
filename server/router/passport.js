@@ -5,11 +5,11 @@ const con = require("../config/database");
 
 module.exports = () => {
     passport.serializeUser((user, done) => {
-        return done(null, {userid : user.userid});
+        done(null, {userid : user.userid});
     });
 
     passport.deserializeUser((userid, done) => {
-        return done(null, userid);
+        done(null, userid);
     });
 
     passport.use(new LocalStrategy({
@@ -20,11 +20,11 @@ module.exports = () => {
             const sql = "select userid, password from users where userid = ?";
             con.query(sql, [username], (err, result, field) => {
                 if(result[0] === undefined){
-                    return done(null, false)
+                    done(null, false)
                 }else if(result[0].password === password){
-                    return done(null, result[0])
+                    done(null, result[0])
                 }else{
-                    return done(null, false)
+                    done(null, false)
                 }
             })
         }

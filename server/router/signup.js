@@ -8,10 +8,10 @@ router.post("/", (req, res) => {
     const sql2 = "insert into users (userid, password) values (?, ?)";
     con.query(sql1, username, (err, result) => {
         if(result.length !== 0){
-            return res.send("no");
+            res.send("no");
         }else{
             con.query(sql2, [username, password], (err, result) => {
-                return res.send("hello");
+                res.send("hello");
             })
         }
         

@@ -8,12 +8,12 @@ router.get("/", (req, res) => {
     const {id} = req.query;
 
     if(id === "0"){
-        return res.send(req.user);
+        res.send(req.user);
     }else{
         const sql = "select userid from users where userid = ?"
         con.query(sql, id, (err, results) => {
             let user = results[0];
-            return res.send(user);
+            res.send(user);
         })
     }
 })
@@ -35,7 +35,7 @@ router.get("/img", (req, res) => {
     con.query(sql, id, (err, result) => {
         const {userprofile} = result[0];
         const filePath = path.join(__dirname, "../../img/"+ userprofile + ".jpg");
-        return res.sendFile(filePath)
+        res.sendFile(filePath)
     })
 })
 

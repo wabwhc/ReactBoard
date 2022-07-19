@@ -1,10 +1,10 @@
+import axios from "axios";
 import { useRef, useState } from "react"
 
 export default function Write(){
 
     const titleRef = useRef();
     const contentRef = useRef();
-    const btnRef = useRef();
 
     const doneWrite = () => {
         const title = titleRef.current.value.trim();
@@ -23,22 +23,26 @@ export default function Write(){
 
 
     return(
-        <div className="Write h-full">
+        <form className="Write h-full" method="post" action="http://localhost:8080/post">
             <div className="h-1/6">
                 <div className="h-1/6" />
-                <input ref={titleRef} onKeyUp={(e) => {
-                    if(e.key === "Enter") contentRef.current.focus();
+                <input name="title" ref={titleRef} onKeyDown={(e) => {
+                    if(e.key === "Enter"){
+                        e.preventDefault();
+                        contentRef.current.focus();
+                    }
                 }} className="block w-11/12 h-1/3 m-auto" type="text" placeholder="제목"/>
+               
             </div>
             <div className="h-4/6">
-                <textarea ref={contentRef} onKeyUp={(e) => {
-                    if(e.key === "Enter") btnRef.current.click();
-                }} className="block w-11/12 h-5/6 m-auto" type="text" placeholder="글 내용"/>
-                <button ref={btnRef} className="block h-1/6" onClick={() => {
-                    const a = doneWrite();
-                    console.log(a);
+                <textarea name="content" ref={contentRef} className="block w-11/12 h-5/6 m-auto" type="text" placeholder="글 내용"/>
+                <button className="block h-1/6" onClick={(e) => {
+                    const code = doneWrite();
+                    if(code < 0) {
+                        e.preventDefault();
+                    }
                 }}>작성</button>
             </div>
-        </div>
+        </form>
     )
 }
