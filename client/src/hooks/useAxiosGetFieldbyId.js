@@ -14,14 +14,13 @@ export default function useAxiosGetFieldbyId(argField, argId=0, type="json"){
     }).then(
       e => {
         if(e.data === ""){
-          return data;
+          return setData(undefined);
         }else{
           let {data} = e;
 
           if(type === "blob"){
             data = makeImgUrl(e.data);
           }
-          
           return setData(data);
         }
       }

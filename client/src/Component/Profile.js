@@ -35,11 +35,11 @@ export default function Profile(){
                     </div>
                     <div className="basis-1/5 bg-green-700">
                     <button onClick={() => {
-                        //if(userid === null){
-                        //    return window.alert("다른 사람의 프로필입니다.")
-                        //}else if(userid.userid !== id){
-                        //    return window.alert("다른 사람의 프로필입니다.")
-                        //}
+                        if(userid === null){
+                            return window.alert("다른 사람의 프로필입니다.")
+                        }else if(userid.userid !== id){
+                            return window.alert("다른 사람의 프로필입니다.")
+                        }
                         file.current.click();
                     }} className="h-2/3  bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded-full">
                       프로필 수정
@@ -66,7 +66,7 @@ export default function Profile(){
             </div>
             <div className="basis-1/6 bg-red-900">
             </div>
-            <CropImage file={file}/>
+            <CropImage file={file} />
         </div>
     )
 }

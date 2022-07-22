@@ -16,7 +16,7 @@ export default function PostList(props){
   return (
   <div className="PostList h-full">
       <Inputbox />
-      <button onClick={() => window.location.href = "/write"}>글 작성</button>
+      <button className="block bg-red-300 ml-auto" onClick={() => window.location.href = "/write"}>글 작성</button>
       <div className="bg-red-100 h-4/5">
         {
             data !== null && data.posts.map((post, index) =>     

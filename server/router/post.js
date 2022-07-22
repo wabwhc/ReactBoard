@@ -30,28 +30,22 @@ router.post("/", (req, res) => {
 
 router.delete("/", (req, res) => {
     const {id} = req.query;
-    const {userid} = req.body;
     
-    if(userid === "default") return res.send("-1") //로그인 안함
-    
-    const sql1 = "select userid from posts where post_id = ?";
-    const sql2 = "delete from posts where post_id = ?";
-    
-    con.query(sql1, userid, (err, result) => {
-        if(err || result.length === 0){
-            res.send("-2");//이미 삭제된 글
-        }else if(userid !== result[0].userid){
-            res.send("-3"); //작성자가 아님
-        }else{
-            con.query(sql2, id, (err, result) => {
-                if(!err) res.send("0");
-            })
-        }
+    const sql = "delete from posts where post_id = ?";
+    con.query(sql, id, (err, result) => {
+        if(!err) res.send("0");
     })
 })
 
 router.put("/", (req, res) => {
-    res.send("hello");
+    const {data} = req.body;
+
+    const {title, post_id} = data;
+    const content = data.content.replace(/\n/gi, "<br>");
+    const sql = "update posts set post_title = ?, post_content = ? where post_id = ?"
+    con.query(sql, [title, content, post_id], (err, result) => {
+        if(!err) return res.send('0');
+    })
 })
 
 router.get("/user", (req, res) => {

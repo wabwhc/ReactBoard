@@ -16,7 +16,7 @@ function App() {
   const [url] = useAxiosGetFieldbyId("user/img", 0,"blob");
 
   if(!user) user = {userid : "default"}
-  
+
   return (
     <div className="App grid grid-cols-7 gap-0 w-full h-full">
       {/*ユーザーの　情報を　見せる　部分　*/}
@@ -37,7 +37,7 @@ function App() {
         <div className="basis-11/12">
           <Routes>
             <Route path="/write" element={<Write />} />
-            <Route path="/post/:id" element={<Post userid={user} />} />
+            <Route path="/post/:id/*" element={<Post userid={user} />} />
             <Route path="/" element={<PostList />} />
           </Routes>
         </div>

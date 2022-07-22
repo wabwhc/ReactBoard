@@ -41,15 +41,17 @@ router.get("/img", (req, res) => {
 
 
 router.put("/img", (req, res) => {
-
-    let {file} = req.body;
-
-    let base64Image = file.split(";base64,").pop();
-    console.log(base64Image.length);
-    let sql = "update  users set userprofile = ? where userid = ?"
+    const {userid} = req.user;
+    const {file} = req.body;
+    const base64Image = file.split(";base64,").pop();
+    
+    const sql = "update  users set userprofile = ? where userid = ?"
     fs.writeFile("./img/"+ "test1" +".jpg", base64Image, "base64", function(err) {
-        console.log(err);
-        res.send("ok")
+        if(!err){
+            con.query(sql, [userid, userid], (err, result) => {
+                res.send("0")
+            })
+        }
     });
 })
 
