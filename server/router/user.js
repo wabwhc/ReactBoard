@@ -46,7 +46,7 @@ router.put("/img", (req, res) => {
     const base64Image = file.split(";base64,").pop();
     
     const sql = "update  users set userprofile = ? where userid = ?"
-    fs.writeFile("./img/"+ "test1" +".jpg", base64Image, "base64", function(err) {
+    fs.writeFile("./img/"+ userid +".jpg", base64Image, "base64", function(err) {
         if(!err){
             con.query(sql, [userid, userid], (err, result) => {
                 res.send("0")

@@ -1,4 +1,5 @@
 import {useEffect, useRef, useState} from "react";
+import { Link } from "react-router-dom";
 import SignForm from "./SignForm";
 
 
@@ -24,7 +25,9 @@ export default function Sign(){
         <div className="Login flex flex-row w-full h-full">
             <div className="basis-1/6"></div>
             <div className="basis-4/6 bg-red-300 flex flex-col">
-                <div className="basis-1/5"></div>
+                <div className="basis-1/5 bg-green-200">
+                    <Link to="/">게시판</Link>
+                </div>
                 <div className="basis-2/4 bg-blue-600">
                     {
                         signstate 

@@ -3,7 +3,6 @@ import useAxiosGetFieldbyId from "../hooks/useAxiosGetFieldbyId";
 import Userimg from "./Userimg";
 import "react-image-crop/dist/ReactCrop.css"
 import { useRef, useState } from "react";
-import axios from "axios";
 import CropImage from "./CropImage";
 
 
@@ -28,7 +27,9 @@ export default function Profile(){
             <div className="basis-1/6 bg-red-100"></div>
             <div className="basis-4/6 bg-red-400 flex flex-col">
                 <div className="basis-1/3 bg-blue-300 flex flex-col">
-                    <div className="basis-1/5 bg-green-100"></div>
+                    <div className="basis-1/5 bg-green-100">
+                        <Link to="/"> 게시판 </Link>
+                    </div>
                     <div className="basis-3/5 bg-green-400 flex flex-row">
                         <Userimg url={url} based={"h"} />
                         <div className="w-full h-full bg-white"></div>
@@ -55,7 +56,7 @@ export default function Profile(){
                         {
                             results !== null && results.length !== 0?
                             results.map((result) => 
-                                <Link key={result.id} className="block" to={`/post/${result.id}`}>
+                                <Link key={result.id} className="block border-b-slate-500  border-y-2" to={`/post/${result.id}`}>
                                     {result.title}
                                 </Link>
                             )

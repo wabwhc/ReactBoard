@@ -11,10 +11,14 @@ function postSign(Ref, sign, Event) {
         withCredentials: true
     }).then(
         e => {
-            if(e.data === "hello"){
-                window.location.href = "/"
-            }else {
-                window.location.href = "/sign"
+            if(e.data === 0){
+                window.location.href = "/";
+            }else if(e.data === "toSignin"){
+                window.location.href = "/sign";
+            }else if(e.data === -1){
+                window.alert("로그인 정보가 옳지않습니다.");
+            }else if(e.data === -2){
+                window.alert("회원가입에 실패했습니다.");
             }
         }
     )

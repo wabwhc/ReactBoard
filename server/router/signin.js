@@ -11,7 +11,7 @@ router.post("/", passport.authenticate("local", {
     failureRedirect : "/signin/fail"
 }))
 
-router.get("/success", (req, res) => res.send("hello"))
-router.get("/fail", (req, res) => res.send("fail"))
+router.get("/success", (req, res) => res.send("0"))
+router.get("/fail", (req, res) => res.send("-1"))
 
 module.exports = router;

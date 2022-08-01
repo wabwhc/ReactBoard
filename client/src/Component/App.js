@@ -1,11 +1,10 @@
-import {Routes, Route} from "react-router-dom";
+import {Routes, Route, Link} from "react-router-dom";
 import axios from "axios";
 import useAxiosGetFieldbyId from "../hooks/useAxiosGetFieldbyId";
 import PostList from "./PostList";
 import Post from "./Post";
 import Write from "./Write";
 import Userimg from "./Userimg";
-import { useRef, useState } from "react";
 
 
 
@@ -33,7 +32,7 @@ function App() {
       
       {/*スレの目録や　スレの内容、　スレを　作成する　部分*/}
       <div className="middle col-span-5 flex flex-col bg-blue-300">
-        <div className="basis-1/12 bg-red-500">게시판 이름</div>
+        <Link to="/" className="basis-1/12 bg-red-500 text-center">게시판</Link>
         <div className="basis-11/12">
           <Routes>
             <Route path="/write" element={<Write />} />

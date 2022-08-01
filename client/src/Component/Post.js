@@ -12,14 +12,13 @@ export default function Post(props){
     const [post] = useAxiosGetFieldbyId("post", id);
     const [replys] = useAxiosGetFieldbyId("reply/post", id);
     const {userid} = props.userid;
-    console.log(post)
 
     const title = useRef();
     const content = useRef();
 
     if(post === undefined){
         window.location.href = "/";
-        window.alert("없는 글")
+        window.alert("없는 글");
     }
 
     return(
