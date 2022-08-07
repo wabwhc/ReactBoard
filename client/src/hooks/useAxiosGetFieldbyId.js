@@ -14,7 +14,8 @@ export default function useAxiosGetFieldbyId(argField, argId=0, type="json"){
     }).then(
       e => {
         if(e.data === ""){
-          return setData(undefined);
+          
+          //return setData(undefined);
         }else{
           let {data} = e;
 

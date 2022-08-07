@@ -10,7 +10,7 @@ export default function Userimg(props){
     }
     
     const url = "/profile/" + path;
-
+    
     return(
         <div id="profile" className={tailwindStyle} style={{ "backgroundImage" : `url(${props.url})`}} 
             onClick={() => {

@@ -14,8 +14,9 @@ function App() {
   let [user] = useAxiosGetFieldbyId("user");
   const [url] = useAxiosGetFieldbyId("user/img", 0,"blob");
 
+  //로그인하지 않으면 userid는 default로 저장함
   if(!user) user = {userid : "default"}
-
+  
   return (
     <div className="App grid grid-cols-7 gap-0 w-full h-full">
       {/*ユーザーの　情報を　見せる　部分　*/}

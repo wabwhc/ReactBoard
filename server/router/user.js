@@ -55,4 +55,20 @@ router.put("/img", (req, res) => {
     });
 })
 
+router.delete("/", (req, res) => {
+    //검색하고 지우는 과정 작성
+    const {password} = req.body
+    const sql1 = "select password from users where userid = ?";
+    con.query(sql1, req.user.userid, (err, result) => {
+        if(password === result[0].password){
+            const sql2 = "delete from users where  userid = ?";
+            con.query(sql2, req.user.userid, (err, result) => {
+                res.send('회원탈퇴');
+            })
+        }else{
+            res.send('비밀번호 틀림');
+        }    
+    })
+})
+
 module.exports = router;

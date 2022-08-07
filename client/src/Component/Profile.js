@@ -4,7 +4,7 @@ import Userimg from "./Userimg";
 import "react-image-crop/dist/ReactCrop.css"
 import { useRef, useState } from "react";
 import CropImage from "./CropImage";
-
+import axios from "axios";
 
 
 
@@ -15,7 +15,9 @@ export default function Profile(){
     const {id} = useParams();
     const [url] = useAxiosGetFieldbyId("user/img", id, "blob");
     const [userid] = useAxiosGetFieldbyId("user");
-    
+    const [click, setClick] = useState(false);
+
+    const input = useRef();
     const file = useRef();
 
     const [what, setWhat] = useState("post/user");
@@ -66,6 +68,28 @@ export default function Profile(){
                 </div>
             </div>
             <div className="basis-1/6 bg-red-900">
+                {
+                    userid !== null && userid.userid === id &&
+                    <>
+                        <button onClick={() => setClick(!click)}>회원탈퇴</button>
+                        {
+                            click &&
+                            <>
+                                <input placeholder="비밀번호 확인" ref={input}/>
+                                <button onClick={() => {
+                                    axios.delete("http://localhost:8080/user", {
+                                        withCredentials: true,
+                                        data: {
+                                            password : input.current.value
+                                        }
+                                    }).then(
+                                        e => console.log(e)
+                                    )
+                                }}>회원탈퇴</button>
+                            </>
+                        }
+                    </>
+                }
             </div>
             <CropImage file={file} />
         </div>
